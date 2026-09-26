@@ -1,6 +1,8 @@
 # Avishi weds Rahul · Digital Wedding Invitation
 
-Bride-side version of the invitation (the groom-side one lives at rahulwedsavishi.in).
+Bride-side version of the invitation. Its groom-side twin is [not-achilles/wedding-site-2](https://github.com/not-achilles/wedding-site-2) (rahulwedsavishi.in).
+
+Both sites share the same `style.css` and `app.js`; only `index.html`, the logo and the share image differ.
 
 ## What's in here
 - `index.html` – all the text, in English (`data-en`) and Hindi (`data-hi`)
