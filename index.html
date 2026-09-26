@@ -23,8 +23,8 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Pinyon+Script&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Montserrat:wght@300;400;500;600&family=Tiro+Devanagari+Hindi:ital@0;1&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css?v=3.0">
+    <link href="https://fonts.googleapis.com/css2?family=Pinyon+Script&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css?v=3.1">
 
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-CDGTFTZSE5"></script>
@@ -53,8 +53,8 @@
             <div class="envelope-letter" id="envelopeLetter">
                 <div class="letter-inner">
                     <img src="images/logo.webp" alt="" class="letter-logo">
-                    <span class="letter-invite-text" data-en="You're Invited" data-hi="शुभ विवाह">You're Invited</span>
-                    <span class="letter-names" data-en="Avishi & Rahul" data-hi="अवीशी और राहुल">Avishi & Rahul</span>
+                    <span class="letter-invite-text">You're Invited</span>
+                    <span class="letter-names">Avishi & Rahul</span>
                     <span class="letter-date">24 . 11 . 2026</span>
                 </div>
             </div>
@@ -85,19 +85,6 @@
             <h1 class="envelope-main-title">You're Invited</h1>
             <p class="envelope-hint">Tap the seal to open your invitation</p>
         </div>
-
-        <!-- Language Selection -->
-        <div class="lang-modal" id="langModal" style="display: none;" role="dialog" aria-modal="true" aria-label="Choose language">
-            <div class="lang-modal-content">
-                <h3 class="lang-title-en">Choose Language</h3>
-                <h3 class="lang-title-hi">भाषा चुनें</h3>
-                <div class="lang-divider"></div>
-                <div class="lang-buttons">
-                    <button class="lang-btn" id="btnEn">English</button>
-                    <button class="lang-btn" id="btnHi">हिंदी</button>
-                </div>
-            </div>
-        </div>
     </div>
 
     <!-- Falling Petals -->
@@ -113,9 +100,6 @@
         </span>
     </button>
 
-    <!-- Floating Language Toggle -->
-    <button class="lang-toggle" id="langToggle" aria-label="Switch to Hindi" title="Change Language / भाषा बदलें">हि</button>
-
     <!-- Hero Section -->
     <header class="hero-section" id="hero">
         <div class="hero-bg" style="background-image: url('images/hero_indian.webp');"></div>
@@ -123,15 +107,15 @@
         <div class="hero-content">
             <img src="images/logo.webp" alt="Avishi & Rahul monogram" class="hero-logo-img fade-up" width="140" height="140">
 
-            <p class="hero-subtitle fade-up" data-en="Shubh Vivah" data-hi="॥ शुभ विवाह ॥">Shubh Vivah</p>
-            <h1 class="hero-title fade-up" data-en="Avishi & Rahul" data-hi="अवीशी और राहुल">Avishi & Rahul</h1>
+            <p class="hero-subtitle fade-up">Shubh Vivah</p>
+            <h1 class="hero-title fade-up">Avishi & Rahul</h1>
 
             <!-- Scratch to reveal the date -->
             <div class="scratch-cards-wrapper fade-up" id="scratchCardContainer">
-                <span class="scratch-hint" data-en="Scratch to reveal the date" data-hi="तिथि देखने के लिए स्क्रैच करें">Scratch to reveal the date</span>
+                <span class="scratch-hint">Scratch to reveal the date</span>
                 <div class="scratch-cards-row">
                     <div class="scratch-card-col">
-                        <div class="scratch-card-reveal" data-en="Nov" data-hi="नवंबर">Nov</div>
+                        <div class="scratch-card-reveal">Nov</div>
                         <canvas id="scratchCanvasMonth" class="scratch-canvas" width="95" height="110" aria-hidden="true"></canvas>
                     </div>
                     <div class="scratch-card-col">
@@ -143,37 +127,37 @@
                         <canvas id="scratchCanvasYear" class="scratch-canvas" width="95" height="110" aria-hidden="true"></canvas>
                     </div>
                 </div>
-                <button type="button" class="scratch-skip" id="scratchSkip" data-en="or tap here to reveal" data-hi="या यहाँ टैप करें">or tap here to reveal</button>
+                <button type="button" class="scratch-skip" id="scratchSkip">or tap here to reveal</button>
             </div>
 
             <div class="hero-reveal-wrapper" id="heroRevealWrapper">
-                <p class="hero-date" id="heroDateRevealed" data-en="Indore · Khargone, Madhya Pradesh" data-hi="इंदौर · खरगोन, मध्य प्रदेश">Indore · Khargone, Madhya Pradesh</p>
+                <p class="hero-date" id="heroDateRevealed">Indore · Khargone, Madhya Pradesh</p>
 
                 <div class="countdown-container" id="countdown" role="timer" aria-live="off">
                     <div class="countdown-item">
                         <span class="countdown-number" id="days">00</span>
-                        <span class="countdown-label" data-en="Days" data-hi="दिन">Days</span>
+                        <span class="countdown-label">Days</span>
                     </div>
                     <div class="countdown-item">
                         <span class="countdown-number" id="hours">00</span>
-                        <span class="countdown-label" data-en="Hours" data-hi="घंटे">Hours</span>
+                        <span class="countdown-label">Hours</span>
                     </div>
                     <div class="countdown-item">
                         <span class="countdown-number" id="minutes">00</span>
-                        <span class="countdown-label" data-en="Mins" data-hi="मिनट">Mins</span>
+                        <span class="countdown-label">Mins</span>
                     </div>
                     <div class="countdown-item">
                         <span class="countdown-number" id="seconds">00</span>
-                        <span class="countdown-label" data-en="Secs" data-hi="सेकंड">Secs</span>
+                        <span class="countdown-label">Secs</span>
                     </div>
                 </div>
-                <p class="countdown-done" id="countdownDone" hidden data-en="Just married! Thank you for your blessings" data-hi="शुभ विवाह सम्पन्न! आपके आशीर्वाद के लिए धन्यवाद">Just married! Thank you for your blessings</p>
+                <p class="countdown-done" id="countdownDone" hidden>Just married! Thank you for your blessings</p>
             </div>
 
-            <a href="#story" class="cta-button fade-up" data-en="View Details" data-hi="विवरण देखें">View Details</a>
+            <a href="#story" class="cta-button fade-up">View Details</a>
         </div>
         <div class="scroll-indicator" aria-hidden="true">
-            <span data-en="Scroll Down" data-hi="नीचे स्क्रॉल करें">Scroll Down</span>
+            <span>Scroll Down</span>
             <svg viewBox="0 0 24 24" width="20" height="20">
                 <path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z" fill="currentColor"/>
             </svg>
@@ -185,15 +169,15 @@
     <section class="section welcome-section container" id="story">
         <div class="section-header fade-up">
             <img src="images/logo.webp" alt="" class="story-logo-icon" loading="lazy">
-            <h2 class="section-title" style="margin-top: 15px;" data-en="Our Story" data-hi="हमारी कहानी">Our Story</h2>
+            <h2 class="section-title" style="margin-top: 15px;">Our Story</h2>
             <div class="decorative-line"></div>
         </div>
         <div class="story-grid">
             <div class="story-text fade-up">
-                <p class="welcome-text" data-en='"From a chance meeting to a lifetime of adventures, our journey together has been nothing short of magical. We are thrilled to take the next step in our lives and tie the knot."' data-hi='"एक अनपेक्षित मुलाकात से लेकर जीवन भर के रोमांच तक, हमारी एक साथ की यात्रा किसी जादू से कम नहीं रही है। हम अपने जीवन का अगला कदम उठाने और विवाह बंधन में बंधने के लिए बेहद उत्साहित हैं।"'>
+                <p class="welcome-text">
                     "From a chance meeting to a lifetime of adventures, our journey together has been nothing short of magical. We are thrilled to take the next step in our lives and tie the knot."
                 </p>
-                <p class="story-invite" data-en-html="We, <strong>Avishi</strong> &amp; <strong>Rahul</strong>, cordially invite you to join us in celebrating our union. Your presence, blessings, and laughter will make our celebrations complete." data-hi-html="हम, <strong>अवीशी</strong> और <strong>राहुल</strong>, आपको हमारे विवाह उत्सव में शामिल होने के लिए सादर आमंत्रित करते हैं। आपकी गरिमामयी उपस्थिति और आशीर्वाद हमारे उत्सव को पूर्ण बनाएंगे।">
+                <p class="story-invite">
                     We, <strong>Avishi</strong> &amp; <strong>Rahul</strong>, cordially invite you to join us in celebrating our union. Your presence, blessings, and laughter will make our celebrations complete.
                 </p>
             </div>
@@ -204,9 +188,9 @@
                         <img src="gallery/1.webp" alt="Holding hands with a bouquet on the day we first met" loading="lazy" width="900" height="1200">
                     </div>
                     <div class="polaroid-caption">
-                        <h4 class="polaroid-milestone" data-en="🌼 The First Meeting" data-hi="🌼 पहली मुलाकात">🌼 The First Meeting</h4>
-                        <p class="polaroid-text" data-en="A bouquet in our hands, hope in our hearts, and a moment we'll cherish forever. 🤍 Introduced by our families, we never imagined our first meeting would feel this natural. ✨" data-hi="हाथों में गुलदस्ता, दिलों में उम्मीद और एक ऐसा पल जिसे हम हमेशा संजोकर रखेंगे। 🤍 परिवारों द्वारा मिलवाए जाने पर, हमने कभी नहीं सोचा था कि हमारी पहली मुलाकात इतनी सहज होगी। ✨">A bouquet in our hands, hope in our hearts, and a moment we'll cherish forever. 🤍 Introduced by our families, we never imagined our first meeting would feel this natural. ✨</p>
-                        <span class="polaroid-date" data-en="when families met..." data-hi="जब परिवार मिले...">when families met...</span>
+                        <h4 class="polaroid-milestone">🌼 The First Meeting</h4>
+                        <p class="polaroid-text">A bouquet in our hands, hope in our hearts, and a moment we'll cherish forever. 🤍 Introduced by our families, we never imagined our first meeting would feel this natural. ✨</p>
+                        <span class="polaroid-date">when families met...</span>
                     </div>
                 </div>
                 <div class="polaroid-card" style="--rotation: 1.8deg; z-index: 2;">
@@ -214,9 +198,9 @@
                         <img src="gallery/2.webp" alt="Avishi and Rahul at the Roka ceremony" loading="lazy" width="900" height="600">
                     </div>
                     <div class="polaroid-caption">
-                        <h4 class="polaroid-milestone" data-en="🌸 The Roka Ceremony" data-hi="🌸 रोका समारोह">🌸 The Roka Ceremony</h4>
-                        <p class="polaroid-text" data-en="Surrounded by love and the blessings of our families, we took our first official step towards forever. ❤️ With every promise exchanged, our bond grew a little stronger. ✨" data-hi="प्यार और परिवारों के आशीर्वाद के बीच, हमने हमेशा के लिए अपना पहला आधिकारिक कदम उठाया। ❤️ हर वादे के साथ हमारा बंधन और भी मजबूत होता गया। ✨">Surrounded by love and the blessings of our families, we took our first official step towards forever. ❤️ With every promise exchanged, our bond grew a little stronger. ✨</p>
-                        <span class="polaroid-date" data-en="sealing our bond..." data-hi="रिश्ते की शुरुआत...">sealing our bond...</span>
+                        <h4 class="polaroid-milestone">🌸 The Roka Ceremony</h4>
+                        <p class="polaroid-text">Surrounded by love and the blessings of our families, we took our first official step towards forever. ❤️ With every promise exchanged, our bond grew a little stronger. ✨</p>
+                        <span class="polaroid-date">sealing our bond...</span>
                     </div>
                 </div>
                 <div class="polaroid-card" style="--rotation: -1.5deg; z-index: 3;">
@@ -224,9 +208,9 @@
                         <img src="gallery/3.webp" alt="Avishi and Rahul on an evening out" loading="lazy" width="900" height="1194">
                     </div>
                     <div class="polaroid-caption">
-                        <h4 class="polaroid-milestone" data-en="🌆 A Perfect Evening" data-hi="🌆 एक खूबसूरत शाम">🌆 A Perfect Evening</h4>
-                        <p class="polaroid-text" data-en="Some evenings are too special to be measured by time. ❤️ Filled with smiles, heartfelt conversations, and countless little moments, this was another memory we'll cherish forever. ✨" data-hi="कुछ शामें इतनी खास होती हैं कि उन्हें समय से नहीं मापा जा सकता। ❤️ मुस्कुराहटों, दिल से की गई बातचीत और अनगिनत छोटे पलों से भरी यह एक और याद है जिसे हम हमेशा संजोकर रखेंगे। ✨">Some evenings are too special to be measured by time. ❤️ Filled with smiles, heartfelt conversations, and countless little moments, this was another memory we'll cherish forever. ✨</p>
-                        <span class="polaroid-date" data-en="a perfect evening..." data-hi="एक यादगार शाम...">a perfect evening...</span>
+                        <h4 class="polaroid-milestone">🌆 A Perfect Evening</h4>
+                        <p class="polaroid-text">Some evenings are too special to be measured by time. ❤️ Filled with smiles, heartfelt conversations, and countless little moments, this was another memory we'll cherish forever. ✨</p>
+                        <span class="polaroid-date">a perfect evening...</span>
                     </div>
                 </div>
                 <div class="polaroid-card" style="--rotation: 2.2deg; z-index: 4;">
@@ -234,9 +218,9 @@
                         <img src="gallery/4.webp" alt="Avishi and Rahul celebrating together" loading="lazy" width="900" height="878">
                     </div>
                     <div class="polaroid-caption">
-                        <h4 class="polaroid-milestone" data-en="💞 Love &amp; Celebration" data-hi="💞 प्रेम और उत्सव">💞 Love &amp; Celebration</h4>
-                        <p class="polaroid-text" data-en="Celebrating the festivities, the love and all the little moments in between. ✨" data-hi="उत्सवों का, प्रेम का और उनके बीच के हर छोटे पल का जश्न। ✨">Celebrating the festivities, the love and all the little moments in between. ✨</p>
-                        <span class="polaroid-date" data-en="love unfolds..." data-hi="प्रेम खिलता है...">love unfolds...</span>
+                        <h4 class="polaroid-milestone">💞 Love &amp; Celebration</h4>
+                        <p class="polaroid-text">Celebrating the festivities, the love and all the little moments in between. ✨</p>
+                        <span class="polaroid-date">love unfolds...</span>
                     </div>
                 </div>
             </div>
@@ -247,39 +231,39 @@
     <section class="section families-section" id="families">
         <div class="container">
             <div class="section-header fade-up">
-                <span class="families-sub" data-en="WITH LOVE" data-hi="सस्नेह निमंत्रण">WITH LOVE</span>
-                <h2 class="families-title" data-en="The Families" data-hi="परिवार">The Families</h2>
+                <span class="families-sub">WITH LOVE</span>
+                <h2 class="families-title">The Families</h2>
                 <div class="decorative-line"></div>
             </div>
 
             <div class="families-card fade-up">
-                <span class="gracious-presence" data-en="AWAITING YOUR GRACIOUS PRESENCE" data-hi="दर्शनाभिलाषी">AWAITING YOUR GRACIOUS PRESENCE</span>
+                <span class="gracious-presence">AWAITING YOUR GRACIOUS PRESENCE</span>
 
                 <div class="grandparents-section">
-                    <span class="side-label" data-en="Grand Parents" data-hi="परम आदरणीय दादा-दादी">Grand Parents</span>
-                    <p class="parent-name" data-en="Lt. Mrs. Kalabai Neema" data-hi="स्व. श्रीमती कलाबाई नीमा">Lt. Mrs. Kalabai Neema</p>
-                    <p class="parent-name" data-en="Lt. Mr. Govindlalji Neema" data-hi="स्व. श्री गोविंदलालजी नीमा">Lt. Mr. Govindlalji Neema</p>
+                    <span class="side-label">Grand Parents</span>
+                    <p class="parent-name">Lt. Mrs. Kalabai Neema</p>
+                    <p class="parent-name">Lt. Mr. Govindlalji Neema</p>
                 </div>
 
                 <div class="families-rule"></div>
 
                 <div class="families-grid">
                     <div class="family-side">
-                        <span class="side-label" data-en="The Bride" data-hi="वधू">The Bride</span>
-                        <p class="couple-name" data-en="Avishi" data-hi="अवीशी">Avishi</p>
-                        <span class="relation" data-en="beloved daughter of" data-hi="सुपुत्री">beloved daughter of</span>
-                        <p class="parent-name" data-en="Mrs. Lalita Neema" data-hi="श्रीमती ललिता नीमा">Mrs. Lalita Neema</p>
-                        <p class="parent-name" data-en="Mr. Vinod Neema" data-hi="श्री विनोद नीमा">Mr. Vinod Neema</p>
+                        <span class="side-label">The Bride</span>
+                        <p class="couple-name">Avishi</p>
+                        <span class="relation">beloved daughter of</span>
+                        <p class="parent-name">Mrs. Lalita Neema</p>
+                        <p class="parent-name">Mr. Vinod Neema</p>
                     </div>
                     <div class="family-divider">
                         <span class="family-heart" aria-hidden="true">♥</span>
                     </div>
                     <div class="family-side">
-                        <span class="side-label" data-en="The Groom" data-hi="वर">The Groom</span>
-                        <p class="couple-name" data-en="Rahul" data-hi="राहुल">Rahul</p>
-                        <span class="relation" data-en="beloved son of" data-hi="सुपुत्र">beloved son of</span>
-                        <p class="parent-name" data-en="Mrs. Alka Mahajan" data-hi="श्रीमती अलका महाजन">Mrs. Alka Mahajan</p>
-                        <p class="parent-name" data-en="Mr. Shyam Mahajan" data-hi="श्री श्याम महाजन">Mr. Shyam Mahajan</p>
+                        <span class="side-label">The Groom</span>
+                        <p class="couple-name">Rahul</p>
+                        <span class="relation">beloved son of</span>
+                        <p class="parent-name">Mrs. Alka Mahajan</p>
+                        <p class="parent-name">Mr. Shyam Mahajan</p>
                     </div>
                 </div>
             </div>
@@ -290,17 +274,17 @@
     <section class="section events-section" id="events">
         <div class="container">
             <div class="section-header fade-up">
-                <h2 class="section-title" data-en="The Celebration" data-hi="विवाह उत्सव">The Celebration</h2>
+                <h2 class="section-title">The Celebration</h2>
                 <div class="decorative-line"></div>
-                <p class="section-subtitle" data-en="Please join us for the wedding festivities" data-hi="कृपया मांगलिक कार्यक्रमों में शामिल होकर वर-वधू को अपना आशीर्वाद प्रदान करें">Please join us for the wedding festivities</p>
+                <p class="section-subtitle">Please join us for the wedding festivities</p>
             </div>
 
             <!-- Schedule at a glance -->
             <ol class="schedule-strip fade-up" aria-label="Schedule at a glance">
-                <li><span class="ss-date" data-en="21 Nov" data-hi="21 नवंबर">21 Nov</span><span class="ss-name" data-en="Haldi · Puja" data-hi="हल्दी · पूजन">Haldi · Puja</span><span class="ss-city" data-en="Indore" data-hi="इंदौर">Indore</span></li>
-                <li><span class="ss-date" data-en="22 Nov" data-hi="22 नवंबर">22 Nov</span><span class="ss-name" data-en="Mehendi" data-hi="मेहंदी">Mehendi</span><span class="ss-city" data-en="Indore" data-hi="इंदौर">Indore</span></li>
-                <li><span class="ss-date" data-en="23 Nov" data-hi="23 नवंबर">23 Nov</span><span class="ss-name" data-en="Carnival · DJ" data-hi="कार्निवल · डीजे">Carnival · DJ</span><span class="ss-city" data-en="Khargone" data-hi="खरगोन">Khargone</span></li>
-                <li class="ss-main"><span class="ss-date" data-en="24 Nov" data-hi="24 नवंबर">24 Nov</span><span class="ss-name" data-en="Wedding" data-hi="विवाह">Wedding</span><span class="ss-city" data-en="Khargone" data-hi="खरगोन">Khargone</span></li>
+                <li><span class="ss-date">21 Nov</span><span class="ss-name">Haldi · Puja</span><span class="ss-city">Indore</span></li>
+                <li><span class="ss-date">22 Nov</span><span class="ss-name">Mehendi</span><span class="ss-city">Indore</span></li>
+                <li><span class="ss-date">23 Nov</span><span class="ss-name">Carnival · DJ</span><span class="ss-city">Khargone</span></li>
+                <li class="ss-main"><span class="ss-date">24 Nov</span><span class="ss-name">Wedding</span><span class="ss-city">Khargone</span></li>
             </ol>
 
             <div class="events-grid-container">
@@ -311,16 +295,16 @@
                     <div class="event-card-inner">
                         <div class="event-card-front" style="background-image: url('images/card_mandli.webp');">
                             <div class="event-card-front-overlay"></div>
-                            <div class="event-badge" data-en="Day 1 • Haldi &amp; Puja" data-hi="प्रथम दिवस • हल्दी एवं पूजन">Day 1 • Haldi &amp; Puja</div>
-                            <div class="event-card-hint"><span data-en="Tap to Reveal Details" data-hi="विवरण देखने के लिए टैप करें">Tap to Reveal Details</span> <svg width="14" height="14"><use href="#i-flip"/></svg></div>
+                            <div class="event-badge">Day 1 • Haldi &amp; Puja</div>
+                            <div class="event-card-hint"><span>Tap to Reveal Details</span> <svg width="14" height="14"><use href="#i-flip"/></svg></div>
                         </div>
                         <div class="event-card-back">
-                            <div class="event-badge" data-en="Day 1 • Haldi &amp; Puja" data-hi="प्रथम दिवस • हल्दी एवं पूजन">Day 1 • Haldi &amp; Puja</div>
-                            <h3 class="event-name" data-en="Haldi &amp; Ganesh Puja" data-hi="हल्दी एवं श्री गणेश पूजन">Haldi &amp; Ganesh Puja</h3>
-                            <p class="event-date-time" data-en="Nov 21, 2026 • 3:00 PM" data-hi="21 नवंबर, 2026 • दोपहर 3:00 बजे">Nov 21, 2026 • 3:00 PM</p>
+                            <div class="event-badge">Day 1 • Haldi &amp; Puja</div>
+                            <h3 class="event-name">Haldi &amp; Ganesh Puja</h3>
+                            <p class="event-date-time">Nov 21, 2026 • 3:00 PM</p>
                             <div class="event-divider"></div>
-                            <p class="event-location-title" data-en="Venue" data-hi="स्थान">Venue</p>
-                            <p class="event-location-text" data-en="Beesa Neema Hall, Indore" data-hi="बीसा नीमा हॉल, इंदौर">Beesa Neema Hall, Indore</p>
+                            <p class="event-location-title">Venue</p>
+                            <p class="event-location-text">Beesa Neema Hall, Indore</p>
                             <div class="event-actions"></div>
                         </div>
                     </div>
@@ -333,16 +317,16 @@
                     <div class="event-card-inner">
                         <div class="event-card-front" style="background-image: url('images/card_mehendi.webp');">
                             <div class="event-card-front-overlay"></div>
-                            <div class="event-badge" data-en="Day 2 • Mehendi" data-hi="द्वितीय दिवस • मेहंदी">Day 2 • Mehendi</div>
-                            <div class="event-card-hint"><span data-en="Tap to Reveal Details" data-hi="विवरण देखने के लिए टैप करें">Tap to Reveal Details</span> <svg width="14" height="14"><use href="#i-flip"/></svg></div>
+                            <div class="event-badge">Day 2 • Mehendi</div>
+                            <div class="event-card-hint"><span>Tap to Reveal Details</span> <svg width="14" height="14"><use href="#i-flip"/></svg></div>
                         </div>
                         <div class="event-card-back">
-                            <div class="event-badge" data-en="Day 2 • Mehendi" data-hi="द्वितीय दिवस • मेहंदी">Day 2 • Mehendi</div>
-                            <h3 class="event-name" data-en="Mehendi Ceremony" data-hi="मेहंदी उत्सव">Mehendi Ceremony</h3>
-                            <p class="event-date-time" data-en="Nov 22, 2026 • 1:00 PM" data-hi="22 नवंबर, 2026 • दोपहर 1:00 बजे">Nov 22, 2026 • 1:00 PM</p>
+                            <div class="event-badge">Day 2 • Mehendi</div>
+                            <h3 class="event-name">Mehendi Ceremony</h3>
+                            <p class="event-date-time">Nov 22, 2026 • 1:00 PM</p>
                             <div class="event-divider"></div>
-                            <p class="event-location-title" data-en="Venue" data-hi="स्थान">Venue</p>
-                            <p class="event-location-text" data-en="Beesa Neema Hall, Indore" data-hi="बीसा नीमा हॉल, इंदौर">Beesa Neema Hall, Indore</p>
+                            <p class="event-location-title">Venue</p>
+                            <p class="event-location-text">Beesa Neema Hall, Indore</p>
                             <div class="event-actions"></div>
                         </div>
                     </div>
@@ -355,16 +339,16 @@
                     <div class="event-card-inner">
                         <div class="event-card-front" style="background-image: url('images/card_haldi.webp');">
                             <div class="event-card-front-overlay"></div>
-                            <div class="event-badge" data-en="Day 3 • Carnival" data-hi="तृतीय दिवस • कार्निवल">Day 3 • Carnival</div>
-                            <div class="event-card-hint"><span data-en="Tap to Reveal Details" data-hi="विवरण देखने के लिए टैप करें">Tap to Reveal Details</span> <svg width="14" height="14"><use href="#i-flip"/></svg></div>
+                            <div class="event-badge">Day 3 • Carnival</div>
+                            <div class="event-card-hint"><span>Tap to Reveal Details</span> <svg width="14" height="14"><use href="#i-flip"/></svg></div>
                         </div>
                         <div class="event-card-back">
-                            <div class="event-badge" data-en="Day 3 • Carnival" data-hi="तृतीय दिवस • कार्निवल">Day 3 • Carnival</div>
-                            <h3 class="event-name" data-en="Carnival" data-hi="कार्निवल उत्सव">Carnival</h3>
-                            <p class="event-date-time" data-en="Nov 23, 2026 • 10:00 AM" data-hi="23 नवंबर, 2026 • सुबह 10:00 बजे">Nov 23, 2026 • 10:00 AM</p>
+                            <div class="event-badge">Day 3 • Carnival</div>
+                            <h3 class="event-name">Carnival</h3>
+                            <p class="event-date-time">Nov 23, 2026 • 10:00 AM</p>
                             <div class="event-divider"></div>
-                            <p class="event-location-title" data-en="Venue" data-hi="स्थान">Venue</p>
-                            <p class="event-location-text" data-en="Radhakunj, Khargone" data-hi="राधाकुंज, खरगोन">Radhakunj, Khargone</p>
+                            <p class="event-location-title">Venue</p>
+                            <p class="event-location-text">Radhakunj, Khargone</p>
                             <div class="event-actions"></div>
                         </div>
                     </div>
@@ -377,16 +361,16 @@
                     <div class="event-card-inner">
                         <div class="event-card-front" style="background-image: url('images/card_sangeet.webp');">
                             <div class="event-card-front-overlay"></div>
-                            <div class="event-badge" data-en="Day 3 • Engagement &amp; DJ" data-hi="तृतीय दिवस • सगाई एवं डीजे">Day 3 • Engagement &amp; DJ</div>
-                            <div class="event-card-hint"><span data-en="Tap to Reveal Details" data-hi="विवरण देखने के लिए टैप करें">Tap to Reveal Details</span> <svg width="14" height="14"><use href="#i-flip"/></svg></div>
+                            <div class="event-badge">Day 3 • Engagement &amp; DJ</div>
+                            <div class="event-card-hint"><span>Tap to Reveal Details</span> <svg width="14" height="14"><use href="#i-flip"/></svg></div>
                         </div>
                         <div class="event-card-back">
-                            <div class="event-badge" data-en="Day 3 • Engagement &amp; DJ" data-hi="तृतीय दिवस • सगाई एवं डीजे">Day 3 • Engagement &amp; DJ</div>
-                            <h3 class="event-name" data-en="Engagement &amp; DJ Night" data-hi="सगाई एवं डीजे नाइट">Engagement &amp; DJ Night</h3>
-                            <p class="event-date-time" data-en="Nov 23, 2026 • 8:00 PM" data-hi="23 नवंबर, 2026 • रात 8:00 बजे">Nov 23, 2026 • 8:00 PM</p>
+                            <div class="event-badge">Day 3 • Engagement &amp; DJ</div>
+                            <h3 class="event-name">Engagement &amp; DJ Night</h3>
+                            <p class="event-date-time">Nov 23, 2026 • 8:00 PM</p>
                             <div class="event-divider"></div>
-                            <p class="event-location-title" data-en="Venue" data-hi="स्थान">Venue</p>
-                            <p class="event-location-text" data-en="Radhakunj, Khargone" data-hi="राधाकुंज, खरगोन">Radhakunj, Khargone</p>
+                            <p class="event-location-title">Venue</p>
+                            <p class="event-location-text">Radhakunj, Khargone</p>
                             <div class="event-actions"></div>
                         </div>
                     </div>
@@ -399,22 +383,22 @@
                     <div class="event-card-inner">
                         <div class="event-card-front" style="background-image: url('images/card_shaadi.webp');">
                             <div class="event-card-front-overlay"></div>
-                            <div class="event-badge gold" data-en="Main Event • Shaadi" data-hi="मुख्य समारोह • शादी">Main Event • Shaadi</div>
-                            <div class="event-card-hint"><span data-en="Tap to Reveal Details" data-hi="विवरण देखने के लिए टैप करें">Tap to Reveal Details</span> <svg width="14" height="14"><use href="#i-flip"/></svg></div>
+                            <div class="event-badge gold">Main Event • Shaadi</div>
+                            <div class="event-card-hint"><span>Tap to Reveal Details</span> <svg width="14" height="14"><use href="#i-flip"/></svg></div>
                         </div>
                         <div class="event-card-back compact">
-                            <div class="event-badge gold" data-en="Main Event • Shaadi" data-hi="मुख्य समारोह • शादी">Main Event • Shaadi</div>
-                            <h3 class="event-name" data-en="Wedding & Reception" data-hi="विवाह एवं प्रीतिभोज">Wedding & Reception</h3>
-                            <p class="event-date-time" data-en="Nov 24, 2026" data-hi="24 नवंबर, 2026">Nov 24, 2026</p>
+                            <div class="event-badge gold">Main Event • Shaadi</div>
+                            <h3 class="event-name">Wedding & Reception</h3>
+                            <p class="event-date-time">Nov 24, 2026</p>
                             <div class="event-divider"></div>
                             <ul class="sub-events-list">
-                                <li><span class="sub-name" data-en="Mamera" data-hi="मामेरा (भात)">Mamera</span><span class="sub-time" data-en="10:00 AM" data-hi="सुबह 10:00 बजे">10:00 AM</span></li>
-                                <li><span class="sub-name" data-en="Baarat" data-hi="बारात आगमन">Baarat</span><span class="sub-time" data-en="4:00 PM" data-hi="शाम 4:00 बजे">4:00 PM</span></li>
-                                <li><span class="sub-name" data-en="Reception" data-hi="प्रीतिभोज">Reception</span><span class="sub-time" data-en="7:00 PM" data-hi="शाम 7:00 बजे">7:00 PM</span></li>
-                                <li><span class="sub-name" data-en="Lagan" data-hi="पाणिग्रहण संस्कार (फेरे)">Lagan</span><span class="sub-time" data-en="11:25 PM" data-hi="रात 11:25 बजे">11:25 PM</span></li>
+                                <li><span class="sub-name">Mamera</span><span class="sub-time">10:00 AM</span></li>
+                                <li><span class="sub-name">Baarat</span><span class="sub-time">4:00 PM</span></li>
+                                <li><span class="sub-name">Reception</span><span class="sub-time">7:00 PM</span></li>
+                                <li><span class="sub-name">Lagan</span><span class="sub-time">11:25 PM</span></li>
                             </ul>
-                            <p class="event-location-title" data-en="Venue" data-hi="स्थान">Venue</p>
-                            <p class="event-location-text" data-en="Radhakunj, Khargone" data-hi="राधाकुंज, खरगोन">Radhakunj, Khargone</p>
+                            <p class="event-location-title">Venue</p>
+                            <p class="event-location-text">Radhakunj, Khargone</p>
                             <div class="event-actions"></div>
                         </div>
                     </div>
@@ -427,19 +411,19 @@
     <section class="section venue-section" id="venue">
         <div class="container venue-container">
             <div class="section-header fade-up">
-                <span class="venue-meta-title" data-en="Venue" data-hi="समारोह स्थल">Venue</span>
-                <h2 class="venue-main-title" data-en="Where We Celebrate" data-hi="विवाह स्थल">Where We Celebrate</h2>
+                <span class="venue-meta-title">Venue</span>
+                <h2 class="venue-main-title">Where We Celebrate</h2>
                 <div class="decorative-line"></div>
                 <div class="venue-switch" role="tablist" aria-label="Choose venue">
                     <button type="button" class="venue-tab" role="tab" aria-selected="false" data-venue="indore">
-                        <span class="vt-dates" data-en="21 – 22 Nov" data-hi="21 – 22 नवंबर">21 – 22 Nov</span>
-                        <span class="vt-name" data-en="Beesa Neema Hall" data-hi="बीसा नीमा हॉल">Beesa Neema Hall</span>
-                        <span class="vt-city" data-en="Indore" data-hi="इंदौर">Indore</span>
+                        <span class="vt-dates">21 – 22 Nov</span>
+                        <span class="vt-name">Beesa Neema Hall</span>
+                        <span class="vt-city">Indore</span>
                     </button>
                     <button type="button" class="venue-tab active" role="tab" aria-selected="true" data-venue="khargone">
-                        <span class="vt-dates" data-en="23 – 24 Nov" data-hi="23 – 24 नवंबर">23 – 24 Nov</span>
-                        <span class="vt-name" data-en="Radhakunj" data-hi="राधाकुंज">Radhakunj</span>
-                        <span class="vt-city" data-en="Nutan Nagar, Khargone" data-hi="नूतन नगर, खरगोन">Nutan Nagar, Khargone</span>
+                        <span class="vt-dates">23 – 24 Nov</span>
+                        <span class="vt-name">Radhakunj</span>
+                        <span class="vt-city">Nutan Nagar, Khargone</span>
                     </button>
                 </div>
             </div>
@@ -457,7 +441,7 @@
                     <svg viewBox="0 0 24 24" width="18" height="18" style="vertical-align: middle; margin-right: 6px;" aria-hidden="true">
                         <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z" fill="currentColor"/>
                     </svg>
-                    <span data-en="Get Directions" data-hi="दिशा-निर्देश प्राप्त करें">Get Directions</span>
+                    <span>Get Directions</span>
                 </a>
             </div>
         </div>
@@ -470,14 +454,14 @@
         <div class="container">
             <img src="images/logo.webp" alt="Avishi & Rahul monogram" class="footer-logo-img" loading="lazy">
 
-            <p class="footer-tagline" data-en="We can't wait to celebrate with you!" data-hi="हमें आपकी गरिमामयी उपस्थिति का इंतज़ार रहेगा!">We can't wait to celebrate with you!</p>
+            <p class="footer-tagline">We can't wait to celebrate with you!</p>
 
             <div class="footer-help-container">
-                <p class="help-title" data-en="Need Help During the Functions?" data-hi="मांगलिक कार्यक्रमों के दौरान सहायता हेतु संपर्क करें">Need Help During the Functions?</p>
+                <p class="help-title">Need Help During the Functions?</p>
                 <div class="contact-numbers">
                     <a href="tel:+918085311990" class="contact-link">
                         <svg width="16" height="16" aria-hidden="true"><use href="#i-phone"/></svg>
-                        <span>+91 80853 11990</span>&nbsp;<span data-en="(Avishi)" data-hi="(अवीशी)">(Avishi)</span>
+                        <span>+91 80853 11990</span>&nbsp;<span>(Avishi)</span>
                     </a>
                 </div>
             </div>
@@ -492,15 +476,15 @@
             </div>
 
             <div class="custom-card-promo-container fade-up">
-                <h3 class="promo-title" data-en="Want a Custom Digital Invitation?" data-hi="क्या आप भी ऐसा डिजिटल आमंत्रण पत्र बनवाना चाहते हैं?">Want a Custom Digital Invitation?</h3>
-                <p class="promo-description" data-en="Make your special day even more magical with a gorgeous, interactive digital invite tailormade for you." data-hi="सुंदर और इंटरैक्टिव डिजिटल आमंत्रण पत्र के साथ अपने विशेष दिन को और भी यादगार बनाएं।">Make your special day even more magical with a gorgeous, interactive digital invite tailormade for you.</p>
+                <h3 class="promo-title">Want a Custom Digital Invitation?</h3>
+                <p class="promo-description">Make your special day even more magical with a gorgeous, interactive digital invite tailormade for you.</p>
                 <a href="https://wa.me/917080308070?text=Hi!%20I%20saw%20the%20gorgeous%20digital%20invitation%20card%20you%20created.%20I'm%20interested%20in%20getting%20a%20customized%20invite.%20Could%20you%20please%20share%20more%20details%20and%20a%20quote?" target="_blank" rel="noopener noreferrer" class="get-quote-btn">
                     <svg width="18" height="18" class="whatsapp-icon" aria-hidden="true"><use href="#i-wa"/></svg>
-                    <span data-en="Get a Quote" data-hi="व्हाट्सएप पर संपर्क करें">Get a Quote</span>
+                    <span>Get a Quote</span>
                 </a>
             </div>
 
-            <p class="footer-copyright" data-en="&copy; 2026 Avishi &amp; Rahul's Wedding. All rights reserved." data-hi="&copy; 2026 अवीशी एवं राहुल का विवाह। सर्वाधिकार सुरक्षित।">&copy; 2026 Avishi &amp; Rahul's Wedding. All rights reserved.</p>
+            <p class="footer-copyright">&copy; 2026 Avishi &amp; Rahul's Wedding. All rights reserved.</p>
         </div>
     </footer>
 
@@ -533,6 +517,6 @@
         <source src="Music.mp3" type="audio/mpeg">
     </audio>
 
-    <script src="app.js?v=3.0"></script>
+    <script src="app.js?v=3.1"></script>
 </body>
 </html>

@@ -18,61 +18,13 @@ document.addEventListener('DOMContentLoaded', () => {
     // ==========================================
     // 0. Language Translation Engine
     // ==========================================
-    let currentLang = 'en';
     let scratchCardsRevealed = false;
-    
-    function setLanguage(lang) {
-        currentLang = lang;
-        
-        // 1. Update data-en / data-hi attributes
-        document.querySelectorAll('[data-en], [data-hi]').forEach(el => {
-            const val = lang === 'en' ? el.getAttribute('data-en') : el.getAttribute('data-hi');
-            if (val !== null) {
-                el.textContent = val;
-            }
-        });
-        document.querySelectorAll('[data-en-html], [data-hi-html]').forEach(el => {
-            const val = lang === 'en' ? el.getAttribute('data-en-html') : el.getAttribute('data-hi-html');
-            if (val !== null) {
-                el.innerHTML = val;
-            }
-        });
-        document.querySelectorAll('[data-en-placeholder]').forEach(el => {
-            const val = el.getAttribute(lang === 'en' ? 'data-en-placeholder' : 'data-hi-placeholder');
-            if (val !== null) el.setAttribute('placeholder', val);
-        });
-        document.documentElement.lang = lang;
-        try { localStorage.setItem('awr-lang', lang); } catch (e) { /* storage unavailable */ }
-        
-        // 2. Update toggle button label
-        const langToggle = document.getElementById('langToggle');
-        if (langToggle) {
-            langToggle.textContent = lang === 'en' ? 'हि' : 'EN';
-            langToggle.setAttribute('aria-label', lang === 'en' ? 'Switch to Hindi' : 'Switch to English');
-        }
-        
-        // 3. Re-initialize scratch card ONLY if not yet fully revealed
-        if (!scratchCardsRevealed && typeof initScratchCard === 'function') {
-            initScratchCard(lang);
-        }
-    }
-
-    const langToggle = document.getElementById('langToggle');
-    if (langToggle) {
-        langToggle.addEventListener('click', () => {
-            const targetLang = currentLang === 'en' ? 'hi' : 'en';
-            setLanguage(targetLang);
-        });
-    }
 
     // ==========================================
     // 0.1. Interactive Envelope Invitation Cover
     // ==========================================
     const envelopeOverlay = document.getElementById('envelopeOverlay');
     const envelopeWrapper = document.getElementById('envelopeWrapper');
-    const langModal = document.getElementById('langModal');
-    const btnEn = document.getElementById('btnEn');
-    const btnHi = document.getElementById('btnHi');
     
     // Lock body scroll while overlay is active
     let isMainContentVisible = false;
@@ -80,11 +32,6 @@ document.addEventListener('DOMContentLoaded', () => {
         document.body.style.overflow = 'hidden';
     }
     
-    let savedLang = null;
-    try { savedLang = localStorage.getItem('awr-lang'); } catch (e) { /* storage unavailable */ }
-    if (savedLang === 'hi' && btnHi) btnHi.classList.add('preferred');
-    if (savedLang === 'en' && btnEn) btnEn.classList.add('preferred');
-
     if (envelopeWrapper && envelopeOverlay) {
         envelopeWrapper.addEventListener('keydown', (e) => {
             if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); envelopeWrapper.click(); }
@@ -100,34 +47,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 toggleMusic();
             }
             
-            // 3. Show Language Selection Modal after card slides up (at 1.1s)
+            // 3. Once the card has slid out, open the invitation
             setTimeout(() => {
-                if (langModal) {
-                    langModal.style.display = 'flex';
-                    // Trigger reflow for transition
-                    langModal.offsetHeight;
-                    langModal.classList.add('show');
-                    const focusBtn = savedLang === 'hi' ? btnHi : btnEn;
-                    if (focusBtn) focusBtn.focus({ preventScroll: true });
-                } else {
-                    // Fallback if modal is missing: proceed to zoom
-                    proceedToMainSite('en');
-                }
+                proceedToMainSite();
             }, 1100);
         });
     }
 
-    function proceedToMainSite(selectedLang) {
-        // Set selected language
-        setLanguage(selectedLang);
-        
-        // Hide Modal
-        if (langModal) {
-            langModal.classList.remove('show');
-            setTimeout(() => {
-                langModal.style.display = 'none';
-            }, 500);
-        }
+    function proceedToMainSite() {
+        if (!scratchCardsRevealed) initScratchCard();
         
         // Zoom/Expand the card to fill the viewport
         envelopeOverlay.classList.add('expand-active');
@@ -137,16 +65,9 @@ document.addEventListener('DOMContentLoaded', () => {
             envelopeOverlay.style.display = 'none';
             document.body.style.overflow = ''; // Unlock scrolling
             isMainContentVisible = true;
-            
-            // Show the floating language toggle
-            if (langToggle) {
-                langToggle.style.display = 'flex';
-            }
         }, 600); // 600ms matching transition speed
     }
 
-    if (btnEn) btnEn.addEventListener('click', () => proceedToMainSite('en'));
-    if (btnHi) btnHi.addEventListener('click', () => proceedToMainSite('hi'));
     
     // (Scroll to Bottom Close Envelope Loop removed as requested)
     
@@ -162,7 +83,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let globalRevealed = false;
     let revealAllScratch = () => {};
 
-    function initScratchCard(lang = 'en') {
+    function initScratchCard() {
         const ids = ['scratchCanvasMonth', 'scratchCanvasDay', 'scratchCanvasYear'];
         const canvases = ids.map(id => document.getElementById(id)).filter(Boolean);
         if (canvases.length < 3) return;
@@ -263,11 +184,11 @@ document.addEventListener('DOMContentLoaded', () => {
             ctx.textAlign = 'center';
             ctx.textBaseline = 'middle';
             
-            let labelText = lang === 'en' ? 'SCRATCH' : 'स्क्रैच';
+            let labelText = 'SCRATCH';
             if (canvas.id === 'scratchCanvasDay') {
-                labelText = lang === 'en' ? 'TO' : 'करें';
+                labelText = 'TO';
             } else if (canvas.id === 'scratchCanvasYear') {
-                labelText = lang === 'en' ? 'REVEAL' : 'देखें';
+                labelText = 'REVEAL';
             }
             ctx.fillText(labelText, logicalWidth / 2, logicalHeight / 2);
         });
@@ -732,18 +653,14 @@ document.addEventListener('DOMContentLoaded', () => {
             const textSpan = unmuteBtn.querySelector('span');
             if (popupVideo.muted) {
                 if (textSpan) {
-                    textSpan.setAttribute('data-en', 'Unmute');
-                    textSpan.setAttribute('data-hi', 'आवाज खोलें');
-                    textSpan.textContent = currentLang === 'en' ? 'Unmute' : 'आवाज खोलें';
+                    textSpan.textContent = 'Unmute';
                 }
                 unmuteBtn.querySelector('svg').innerHTML = `
                     <path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.21.05-.42.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z" fill="currentColor"/>
                 `;
             } else {
                 if (textSpan) {
-                    textSpan.setAttribute('data-en', 'Mute');
-                    textSpan.setAttribute('data-hi', 'आवाज बंद करें');
-                    textSpan.textContent = currentLang === 'en' ? 'Mute' : 'आवाज बंद करें';
+                    textSpan.textContent = 'Mute';
                 }
                 unmuteBtn.querySelector('svg').innerHTML = `
                     <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z" fill="currentColor"/>
@@ -806,7 +723,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
     
-    // Initialize Scratch Card (will be initialized via setLanguage dynamically)
     // initScratchCard();
 
     // 1. Countdown Timer (Target: Nov 24, 2026 19:00:00)
@@ -1197,10 +1113,10 @@ document.addEventListener('DOMContentLoaded', () => {
             actions.innerHTML =
                 '<a class="event-action solid" target="_blank" rel="noopener noreferrer" href="' + cal.toString() + '">' +
                     '<svg width="13" height="13" aria-hidden="true"><use href="#i-cal"/></svg>' +
-                    '<span data-en="Save date" data-hi="तिथि सहेजें">' + (currentLang === 'hi' ? 'तिथि सहेजें' : 'Save date') + '</span></a>' +
+                    '<span>Save date</span></a>' +
                 '<a class="event-action" target="_blank" rel="noopener noreferrer" href="' + map + '">' +
                     '<svg width="13" height="13" aria-hidden="true"><use href="#i-pin"/></svg>' +
-                    '<span data-en="Map" data-hi="नक्शा">' + (currentLang === 'hi' ? 'नक्शा' : 'Map') + '</span></a>';
+                    '<span>Map</span></a>';
         }
 
         card.addEventListener('click', function(e) {
