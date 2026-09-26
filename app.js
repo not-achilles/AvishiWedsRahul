@@ -64,6 +64,7 @@ document.addEventListener('DOMContentLoaded', () => {
         setTimeout(() => {
             envelopeOverlay.style.display = 'none';
             document.body.style.overflow = ''; // Unlock scrolling
+            playIntro();
             isMainContentVisible = true;
         }, 600); // 600ms matching transition speed
     }
@@ -758,11 +759,20 @@ document.addEventListener('DOMContentLoaded', () => {
         const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
         const seconds = Math.floor((difference % (1000 * 60)) / 1000);
         
-        // Padding
-        if (daysEl) daysEl.innerText = days < 10 ? '0' + days : days;
-        if (hoursEl) hoursEl.innerText = hours < 10 ? '0' + hours : hours;
-        if (minutesEl) minutesEl.innerText = minutes < 10 ? '0' + minutes : minutes;
-        if (secondsEl) secondsEl.innerText = seconds < 10 ? '0' + seconds : seconds;
+        // Padding, with a small drop-in whenever a digit changes
+        const setNum = (el, n) => {
+            if (!el) return;
+            const v = n < 10 ? '0' + n : String(n);
+            if (el.textContent === v) return;
+            el.textContent = v;
+            el.classList.remove('tick');
+            void el.offsetWidth;
+            el.classList.add('tick');
+        };
+        setNum(daysEl, days);
+        setNum(hoursEl, hours);
+        setNum(minutesEl, minutes);
+        setNum(secondsEl, seconds);
     }
     
     // Initial run and repeat every second
@@ -1107,7 +1117,8 @@ document.addEventListener('DOMContentLoaded', () => {
             cal.searchParams.set('text', card.dataset.calTitle);
             cal.searchParams.set('dates', toGoogleDate(card.dataset.calStart) + '/' + toGoogleDate(card.dataset.calEnd));
             cal.searchParams.set('location', card.dataset.calLocation);
-            cal.searchParams.set('details', 'You are warmly invited to the wedding festivities of Avishi & Rahul. ' + window.location.href.split('#')[0]);
+            const couple = document.body.dataset.couple || '';
+            cal.searchParams.set('details', 'You are warmly invited to the wedding festivities of ' + couple + '. ' + window.location.href.split('#')[0]);
             cal.searchParams.set('ctz', 'Asia/Kolkata');
             const map = 'https://maps.google.com/?q=' + encodeURIComponent(card.dataset.map || card.dataset.calLocation);
             actions.innerHTML =
@@ -1137,16 +1148,13 @@ document.addEventListener('DOMContentLoaded', () => {
     // ==========================================
     // 9b. Venue switcher (Indore / Khargone)
     // ==========================================
-    const VENUES = {
-        indore: { embed: 'Beesa%20Neema%20Hall%20Indore', link: 'Beesa+Neema+Hall+Indore' },
-        khargone: { embed: 'Radha%20Kunj%20Khargone', link: 'Radhakunj+Khargone' }
-    };
     const venueMap = document.getElementById('venueMap');
     const venueDirections = document.getElementById('venueDirections');
     document.querySelectorAll('.venue-tab').forEach(tab => {
         tab.addEventListener('click', () => {
-            const v = VENUES[tab.dataset.venue];
-            if (!v) return;
+            const q = tab.dataset.query;
+            if (!q) return;
+            const v = { embed: encodeURIComponent(tab.dataset.embed || q), link: encodeURIComponent(q).replace(/%20/g, '+') };
             document.querySelectorAll('.venue-tab').forEach(t => {
                 t.classList.toggle('active', t === tab);
                 t.setAttribute('aria-selected', t === tab ? 'true' : 'false');
@@ -1161,5 +1169,73 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    
+    // ==========================================
+    // 11. Motion: intro, polaroid developing, staggered cards, hero fade
+    // ==========================================
+
+    // Split the hero names into letters so they can rise in one by one
+    document.querySelectorAll('[data-split]').forEach(el => {
+        const text = el.textContent.trim();
+        el.setAttribute('aria-label', text);
+        el.textContent = '';
+        [...text].forEach((ch, i) => {
+            const span = document.createElement('span');
+            span.className = 'ch' + (ch === '&' ? ' amp' : '') + (ch === ' ' ? ' sp' : '');
+            span.setAttribute('aria-hidden', 'true');
+            span.style.setProperty('--ci', i);
+            span.textContent = ch === ' ' ? ' ' : ch;
+            el.appendChild(span);
+        });
+    });
+
+    let introPlayed = false;
+    function playIntro() {
+        if (introPlayed) return;
+        introPlayed = true;
+        document.body.classList.add('intro-play');
+    }
+    // No envelope on the page (or it failed): play straight away
+    if (!envelopeOverlay || getComputedStyle(envelopeOverlay).display === 'none') playIntro();
+
+    // Polaroids develop like instant film as they come into view
+    const developObserver = new IntersectionObserver((entries, obs) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('developed');
+                obs.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.45 });
+    document.querySelectorAll('.polaroid-card').forEach(card => developObserver.observe(card));
+
+    // Stagger event cards that share a row, so each row deals out left to right
+    function indexCardRows() {
+        let rowTop = null, i = 0;
+        document.querySelectorAll('.events-grid-container .event-card').forEach(card => {
+            const top = card.offsetTop;
+            if (rowTop === null || Math.abs(top - rowTop) > 10) { rowTop = top; i = 0; }
+            card.style.setProperty('--i', i++);
+        });
+    }
+    indexCardRows();
+    window.addEventListener('resize', indexCardRows);
+
+    // Hero content drifts up and fades as you scroll past it
+    const heroContent = document.querySelector('.hero-content');
+    if (heroContent && !prefersReducedMotion) {
+        let ticking = false;
+        window.addEventListener('scroll', () => {
+            if (ticking) return;
+            ticking = true;
+            requestAnimationFrame(() => {
+                const h = window.innerHeight;
+                const p = Math.min(Math.max(window.scrollY / h, 0), 1);
+                heroContent.style.transform = p ? `translateY(${p * -60}px)` : '';
+                heroContent.style.opacity = p ? String(1 - p * 0.9) : '';
+                ticking = false;
+            });
+        }, { passive: true });
+    }
     
 });
